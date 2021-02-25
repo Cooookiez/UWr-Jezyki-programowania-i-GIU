@@ -1,1 +1,3 @@
-# UWr-Jezyki-programowania-i-GIU
+# UWr Jezyki programowania i GIU
+
+Listy wysła jako kukiz.krzysztof.lista_01
