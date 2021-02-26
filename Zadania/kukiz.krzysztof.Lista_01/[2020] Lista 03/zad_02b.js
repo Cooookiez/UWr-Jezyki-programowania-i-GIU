@@ -1,5 +1,5 @@
 
-var suma = function() {
+let suma = function() {
     let sum = 0;
     for (arg of arguments) {
         if (typeof arg == "number") {
@@ -12,5 +12,5 @@ var suma = function() {
     return sum
 }
 
-a = suma(1,2,3,[4,5,"aa"],10,"asda")
+let a = suma(1,2,3,[4,5,"aa"],10,"asda")
 console.log("25 vs " + a);

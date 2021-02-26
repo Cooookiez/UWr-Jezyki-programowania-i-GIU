@@ -9,5 +9,5 @@ var suma = function() {
     return sum
 }
 
-a = suma(1,2,3,10,"dad",20,"3",30)
+let a = suma(1,2,3,10,"dad",20,"3",30)
 console.log(a);
