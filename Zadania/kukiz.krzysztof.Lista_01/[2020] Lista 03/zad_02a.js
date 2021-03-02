@@ -1,5 +1,5 @@
 
-var suma = function() {
+let suma = function() {
     let sum = 0;
     for (arg of arguments) {
         if (typeof arg == "number") {
