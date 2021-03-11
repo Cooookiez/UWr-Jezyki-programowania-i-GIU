@@ -14,16 +14,16 @@ function Fibo() {
     this.i = 0;
 }
 
-Fibo.prototype[Symbol.iterator] = function *() {
-    let sq5 = Math.sqrt(5);
-    let tmp;
-    while (true) {
-        tmp = (((1 / sq5) * ((1 + sq5) / 2)**this.i) - ((1 / sq5) * ((1 - sq5) / 2)**this.i));
-        tmp = Math.round(tmp);
-        this.i++;
-        yield BigInt( tmp );
-    }
-}
+// Fibo.prototype[Symbol.iterator] = function *() {
+//     let sq5 = Math.sqrt(5);
+//     let tmp;
+//     while (true) {
+//         tmp = (((1 / sq5) * ((1 + sq5) / 2)**this.i) - ((1 / sq5) * ((1 - sq5) / 2)**this.i));
+//         tmp = Math.round(tmp);
+//         this.i++;
+//         yield BigInt( tmp );
+//     }
+// }
 
 Fibo.prototype.next = function () {
     let sq5 = Math.sqrt(5);
@@ -36,7 +36,7 @@ Fibo.prototype.next = function () {
 }
 
 let fib1 = Fibonacci();
-let fib2 = Fibo();
+let fib2 = new Fibo();
 for (let i = 0; i < 200; i++) {
     console.log(fib1.next());
     console.log(fib2.next());

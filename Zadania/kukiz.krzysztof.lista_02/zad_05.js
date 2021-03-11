@@ -1,8 +1,10 @@
 
-function BST(key, left, right) {
+function BST(key, left=null, right=null) {
     this.key = key;
     this.left = left;
     this.right = right;
+
+    return this;
 }
 
 BST.prototype.insert = function(key) {
@@ -25,16 +27,16 @@ BST.prototype.insert = function(key) {
     }
 }
 
-BST.prototype.ite = function () {
-    if (this.left != undefined && this.left != null) {
-        console.log(this.left.ite());
-    } else {
-        console.log(this.key);
+BST.prototype[Symbol.iterator] = function *() {
+    if (this.left) {
+        // console.log(this.left);
+        this.left;
     }
-    if (this.right != undefined && this.right != null) {
-        console.log(this.right.ite());
-    } else {
-        console.log(this.key);
+    // console.log(this.key);
+    yield this.key;
+    if (this.right) {
+        // console.log(this.right);
+        this.right;
     }
 }
 
@@ -51,6 +53,9 @@ b.insert(7);
 b.insert(14);
 b.insert(13);
 
-console.log(b);
+// console.log(b);
+// b.ite()
 
-b.ite()
+for (let bb of b) {
+    console.log(bb);
+}
