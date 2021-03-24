@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zad 03</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        main {
+            display: block;
+            background-color: red;
+            width: calc(4 * 44px);
+        }
+        main > header {
+            display: block;
+            background-color: white;
+            height: 18px;
+            padding: 4px;
+            text-align: right;
+        }
+        main > section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 44px 44px 44px 44px;
+        }
+        main > section > input {
+            color:  grey;
+            background-color: lightgray;
+            border: none;
+            /* padding: 8px 16px; */
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        main > section > input:hover {
+            background-color: white;
+        }
+    </style>
+    <script>
+        var number1 = "";
+        var number2 = "";
+        var actionType = null;
+
+        function addDigit(value) {
+            console.log(value);
+            console.log(typeof(value));
+            if (actionType == null) {
+                number1 += value;
+            } else {
+                number2 += value;
+            }
+            updateScreen();
+        }
+
+        function setAction(action) {
+            if (actionType == null) {
+                switch (action) {
+                    case 'times':   actionType = "*"; break;
+                    case 'divide':  actionType = "/"; break;
+                    case 'plus':    actionType = "+"; break;
+                    case 'minus':   actionType = "-"; break;
+                    default: break;
+                }
+                updateScreen();
+            }
+        }
+
+        function addPoint() {
+            if (actionType == null) {
+                if (!number1.includes(".")) {
+                    number1 += ".";
+                }
+            } else {
+                if (!number2.includes(".")) {
+                    number2 += ".";
+                }
+            }
+            updateScreen();
+        }
+
+        function equal() {
+            result = eval(number1 + actionType + number2);
+            result *= 10000;
+            result = Math.round(result);
+            result /= 10000;
+            number1 = result.toString();
+            actionType = null;
+            number2 = "";
+            updateScreen();
+        }
+
+        function updateScreen() {
+            console.log("n1", number1);
+            console.log("p", actionType);
+            console.log("n2", number2);
+            let output = "";
+            if (number1 != "") {
+                output += number1;
+                if (actionType != null) {
+                    output += " " + actionType
+                    if (number2 != "") {
+                        output += " " + number2
+                    }
+                }
+            }
+            document.getElementsByTagName("header")[0].innerText = output;
+        }
+
+    </script>
+</head>
+<body>
+    <main id="calculator">
+        <header></header>
+        <section id="keypad">
+            <input type="button" value="7" class="number" onClick="addDigit(7)">
+            <input type="button" value="8" class="number" onClick="addDigit(8)">
+            <input type="button" value="9" class="number" onClick="addDigit(9)">
+            <input type="button" value="*" class="action" onClick="setAction('times')">
+            <input type="button" value="4" class="number" onClick="addDigit(4)">
+            <input type="button" value="5" class="number" onClick="addDigit(5)">
+            <input type="button" value="6" class="number" onClick="addDigit(6)">
+            <input type="button" value="/" class="action" onClick="setAction('divide')">
+            <input type="button" value="1" class="number" onClick="addDigit(1)">
+            <input type="button" value="2" class="number" onClick="addDigit(2)">
+            <input type="button" value="3" class="number" onClick="addDigit(3)">
+            <input type="button" value="+" class="action" onClick="setAction('plus')">
+            <input type="button" value="." onClick="addPoint()">
+            <input type="button" value="0" class="number" onClick="addDigit(0)">
+            <input type="button" value="=" class="action" onClick="equal()">
+            <input type="button" value="-" class="action" onClick="setAction('minus')">
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zad 02</title>
+    <script>
+        window.addEventListener('load', () => {
+            
+            console.log('Page loaded');
+            aplusb();
+
+            document.getElementsByName("a")[0].addEventListener("keyup", (e) => {
+                aplusb();
+            });
+            document.getElementsByName("b")[0].addEventListener("keyup", (e) => {
+                aplusb();
+            });
+            document.getElementsByName("c")[0].addEventListener("keyup", (e) => {
+                cToAandB();
+            });
+        })
+
+        function aplusb() {
+            let aVal = document.getElementsByName("a")[0].value;
+            let bVal = document.getElementsByName("b")[0].value;
+
+            aVal = parseFloat(aVal);
+            bVal = parseFloat(bVal);
+
+            if (isNaN(aVal) || isNaN(bVal)) {
+                console.log("a and b has to be number");
+            } else {
+                let cVal = aVal + bVal;
+                document.getElementsByName("c")[0].value = cVal;
+            }
+        }
+
+        function cToAandB() {
+            let cVal = document.getElementsByName("c")[0].value;
+
+            cVal = parseFloat(cVal);
+
+            if (isNaN(cVal)) {
+                console.log("c has to be a number");
+            } else {
+                document.getElementsByName("a")[0].value = cVal;
+                document.getElementsByName("b")[0].value = 0;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    
+    <form>
+        <input name="a" value="2"> + <input name="b" value="3"> = <input name="c">
+    </form>
+
+</body>
+</html>
