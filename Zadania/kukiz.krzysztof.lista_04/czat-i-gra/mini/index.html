@@ -1,0 +1,37 @@
+<html>
+    <meta charset="utf-8" />
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+    Aktualny czas na serwerze <span id="time"></span>.
+    <div>
+        <input type='text' id='txtmessage'/>
+        <ul id='messages'></ul>
+    </div>
+
+    <script>
+
+        var socket = io();
+
+        socket.on('time message', 
+           function(data) {
+             var t = document.getElementById('time');
+            t.innerHTML = data;
+        });
+
+        socket.on('chat message', function(data) {
+            var msg = document.getElementById('messages');
+            msg.innerHTML += "<li>"+ data + "</li>";
+        });
+
+
+        document.getElementById('txtmessage').addEventListener('change', 
+           function() {
+             socket.emit('chat message', this.value);
+             this.value='';
+        });
+        
+    </script>
+</body>
+</html>

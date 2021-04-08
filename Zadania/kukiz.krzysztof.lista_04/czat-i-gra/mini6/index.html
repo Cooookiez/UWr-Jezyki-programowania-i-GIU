@@ -1,0 +1,121 @@
+<html>
+    <meta charset="utf-8" />
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+		<style> td {
+					height:30px;
+			        width:30px;
+			        border:1px solid grey;
+			        text-align:center;
+			        vertical-align:middle;
+			        font-size:1.5em;
+			        padding:0;
+			        color:white;
+			        }
+	     </style>
+    </head>
+    <body>
+		<h2>Kółko i krzyżyk - kliknij 5 pól w jednej linii!</h2>
+		<table>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><td></td><td></td></td><td></td><td></td><td></td></tr>
+		</table>
+    <div>
+        <input type='text' id='txtmessage'/>
+        <button id='reset'>Nowa gra</button>
+        <ul id='messages'></ul>
+    </div>
+    </body>
+
+<script>
+
+	var nick=prompt("Podaj swój nick");
+
+	var socket = io();
+
+	socket.emit('nick', nick);
+
+	var messages=document.getElementById('messages');
+	var reset_button = document.getElementById('reset');
+	var msg_input = document.getElementById('txtmessage');
+	
+	msg_input.focus()
+
+	var td=document.querySelectorAll('td');
+	var i=0;
+	var j=0;
+	var pionek='x';
+	var color='white';
+
+	// wysyłanie wiadomości o ruchu
+	function ruch(){
+	   socket.emit('move', JSON.stringify({pole:this.pole,pionek:pionek}));
+	}
+
+	for(let x of td)
+	{
+	    x.style.background='white'; 
+	    x.pole=i++;	    
+	    x.onclick=ruch;
+	}
+	
+	// odbieranie wiadomości 
+	socket.on('chat message', function(data) { 
+		messages.innerHTML += "<li>"+ data + "</li>";
+	});
+
+	// odbieranie wiadomości o resecie
+	socket.on('reset', function(msg) { 
+		messages.innerHTML = "<li>"+ msg + " "+nick+"!</li>";
+		for(let x of td)
+		{
+			x.innerHTML='';
+			x.style.background='white';
+		}	
+	});
+
+
+	// odbieranie wiadomości o przyznanym id
+	socket.on('id', function(msg) {
+		   pionek=msg; 
+	});
+
+	// odbieranie wiadomości o ruchu
+	socket.on('move', function(msg) {
+		let x=JSON.parse(msg);
+		if(x.color)  
+			td[x.pole].style.background=x.color;
+		else	
+			td[x.pole].style.background=(x.pionek==pionek? "white":"pink");
+		td[x.pole].innerHTML=x.pionek;
+		// messages.innerHTML += "<li>"+ msg + "</li>";
+	});
+
+	// wysyłanie wiadomości z okienka czatu
+	msg_input.addEventListener('change', function() {
+		 socket.emit('chat message',"<b>"+nick+":</b> "+ this.value);
+		 this.value='';
+
+	});
+
+	// wysyłanie wiadomości o resecie
+	reset_button.addEventListener('click', function() {
+		 socket.emit('reset', "Witaj");
+	});
+
+
+
+
+</script>
+
+</html>

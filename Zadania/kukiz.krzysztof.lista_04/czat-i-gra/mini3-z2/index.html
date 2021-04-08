@@ -1,0 +1,68 @@
+<html>
+    <meta charset="utf-8" />
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+		<style>	
+			#people {float:right;width:auto}
+		</style>
+	</head>
+    <body>
+    <div>
+        <ul id='people'></ul>
+		<input id='message'/>
+        <ul id='messages'></ul>
+        
+		
+        <button id='reset'>Reset</button>
+    </div>
+    </body>
+
+<script>
+
+	var nick=prompt("Podaj swój nick");
+
+	var socket = io();
+	socket.emit("nick",nick);
+
+	var messages=document.getElementById('messages');
+	var people=document.getElementById('people');
+	var reset_button = document.getElementById('reset');
+	var msg_input = document.getElementById('message');
+	
+	msg_input.focus();
+	
+	// odbieranie wiadomości 
+	socket.on('chat message', function(data) { 
+		messages.innerHTML += "<li>"+ data + "</li>";
+	});
+
+	// odbieranie listy osób 
+	socket.on('user list', function(data) {
+		let users=JSON.parse(data);
+		let s='';
+		for(let x in users) 
+			s+= "<li>"+ users[x] +" ("+ x +")</li>";
+		people.innerHTML=s;
+	});
+
+	// odbieranie wiadomości o resecie
+	socket.on('reset', function(msg) { 
+		messages.innerHTML = "<li>"+ msg + "</li>";
+	});
+
+
+	// wysyłanie wiadomości
+	msg_input.addEventListener('change', function() {
+		 socket.emit('chat message',"<b>"+nick+":</b> "+ this.value);
+		 this.value='';
+
+	});
+
+	// wysyłanie wiadomości o resecie
+	reset_button.addEventListener('click', function() {
+		 socket.emit('reset', "Witaj");
+	});
+
+</script>
+
+</html>

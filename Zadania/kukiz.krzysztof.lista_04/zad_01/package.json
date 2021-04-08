@@ -1,0 +1,18 @@
+{
+  "name": "krzysztofkukiz",
+  "version": "1.0.0",
+  "description": "Lista 04, Zadanie 01, Autor: Krzysztof Kukiz",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Krzysztof Kukiz",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "*",
+    "http": "*",
+    "socket.io": "^4.0.1",
+    "vr": "^0.2.0"
+  }
+}

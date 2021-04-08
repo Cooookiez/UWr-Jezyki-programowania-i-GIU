@@ -1,0 +1,34 @@
+<html>
+    <meta charset="utf-8" />
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/appjs.js"></script>
+    </head>
+    <body>
+    <div>
+        <input type='text' id='txtmessage'/>
+        <ul id='messages'></ul>
+    </div>
+    </body>
+
+<script>
+
+	var socket = io();
+	
+	// odbieranie wiadomości 
+	socket.on('chat message', function(data) {
+		var msg = document.getElementById('messages');
+		msg.innerHTML += "<li>"+ data + "</li>";
+	});
+
+	// wysyłanie wiadomości
+	var txtmessage = document.getElementById('txtmessage');
+	txtmessage.addEventListener('change', function() {
+		 socket.emit('chat message', this.value);
+		 this.value='';
+
+	});
+
+</script>
+
+</html>
