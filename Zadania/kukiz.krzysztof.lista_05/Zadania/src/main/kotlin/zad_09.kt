@@ -42,8 +42,8 @@ data class Ułamek(var licznik:Int=0, var mianownik:Int=1){
 
 operator fun Int.times(u:Ułamek):Ułamek= u * this
 operator fun Int.plus(u:Ułamek):Ułamek= u + this
-operator fun Int.minus(u:Ułamek):Ułamek= u - this
-operator fun Int.div(u:Ułamek):Ułamek= u / this
+operator fun Int.minus(u:Ułamek):Ułamek= Ułamek(this, 1) - u
+operator fun Int.div(u:Ułamek):Ułamek= Ułamek(this, 1) / u
 
 fun main() {
     var a=Ułamek(2,5)
