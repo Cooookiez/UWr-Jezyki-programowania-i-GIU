@@ -1,0 +1,13 @@
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\bin\Debug\netcoreapp3.1\zad_02.exe
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\bin\Debug\netcoreapp3.1\zad_02.deps.json
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\bin\Debug\netcoreapp3.1\zad_02.runtimeconfig.json
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\bin\Debug\netcoreapp3.1\zad_02.runtimeconfig.dev.json
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\bin\Debug\netcoreapp3.1\zad_02.dll
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\bin\Debug\netcoreapp3.1\zad_02.pdb
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\obj\Debug\netcoreapp3.1\zad_02.csprojAssemblyReference.cache
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\obj\Debug\netcoreapp3.1\zad_02.AssemblyInfoInputs.cache
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\obj\Debug\netcoreapp3.1\zad_02.AssemblyInfo.cs
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\obj\Debug\netcoreapp3.1\zad_02.csproj.CoreCompileInputs.cache
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\obj\Debug\netcoreapp3.1\zad_02.dll
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\obj\Debug\netcoreapp3.1\zad_02.pdb
+O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_01\zad_02\zad_02\obj\Debug\netcoreapp3.1\zad_02.genruntimeconfig.cache
