@@ -1,0 +1,34 @@
+﻿<Window x:Class="lista_04_zad_01.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lista_04_zad_01"
+        mc:Ignorable="d"
+        Title="GUI - Lista 4" Height="450" Width="800">
+    <Grid x:Name="grid_main">
+        <Rectangle x:Name="rec" Fill="#FF0000" Width="70" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-35"/>
+        <Ellipse x:Name="ell" Fill="#00FFFF" Width="70" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-35"/>
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical">
+                <ScrollViewer HorizontalAlignment="Center" VerticalAlignment="Top" VerticalScrollBarVisibility="Hidden">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Red" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBox x:Name="inp_red" Text="255,00" TextWrapping="Wrap" Width="44" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,8,0" KeyUp="inp_red_KeyUp"/>
+                        <Label Content="Green" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBox x:Name="inp_green" Text="255,00" TextWrapping="Wrap" Width="44" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,8,0" KeyUp="inp_green_KeyUp"/>
+                        <Label Content="Blue" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <TextBox x:Name="inp_blue" Text="255,00" TextWrapping="Wrap" Width="44" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" KeyUp="inp_blue_KeyUp"/>
+                    </StackPanel>
+                </ScrollViewer>
+                <ScrollViewer HorizontalAlignment="Center" VerticalAlignment="Top" VerticalScrollBarVisibility="Hidden">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btn_kwadraturaKola" Content="Kwadratura koła" Margin="0,0,8,0" Click="btn_kwadraturaKola_Click"/>
+                        <Button x:Name="btn_mode" Content="Tryb" Click="btn_mode_Click"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </StackPanel>
+        </ScrollViewer>
+        <Label x:Name="lbl_rgb_values" Content="255, 255, 255 / #FFFFF / 100%, 100%, 100%" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="10"/>
+    </Grid>
+</Window>
