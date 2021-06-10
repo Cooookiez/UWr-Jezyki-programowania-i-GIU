@@ -38,7 +38,7 @@ namespace zad_01
                     tmp = String.Format("{0," + cellLength + "}", tmp);
                     if (j == 1)
                     {
-                        tmp = String.Format("{0," + (cellLength + 1) + "}", tmp);
+                        //tmp = String.Format("{0," + (cellLength + 1) + "}", tmp);
                         tmp = String.Format("{0,-" + (tmp.Length + 2) + "}", tmp);
                     } 
                     else
