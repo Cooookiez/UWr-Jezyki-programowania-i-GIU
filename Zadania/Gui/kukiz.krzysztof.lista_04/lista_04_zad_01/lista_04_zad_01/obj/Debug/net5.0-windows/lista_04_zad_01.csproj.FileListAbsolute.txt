@@ -19,4 +19,3 @@ O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.
 O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_04\lista_04_zad_01\lista_04_zad_01\obj\Debug\net5.0-windows\ref\lista_04_zad_01.dll
 O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_04\lista_04_zad_01\lista_04_zad_01\obj\Debug\net5.0-windows\lista_04_zad_01.pdb
 O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_04\lista_04_zad_01\lista_04_zad_01\obj\Debug\net5.0-windows\lista_04_zad_01.genruntimeconfig.cache
-O:\OneDrive\_51__UWr\UWr-Jezyki-programowania-i-GIU\Zadania\Gui\kukiz.krzysztof.lista_04\lista_04_zad_01\lista_04_zad_01\obj\Debug\net5.0-windows\lista_04_zad_01.csproj.AssemblyReference.cache
