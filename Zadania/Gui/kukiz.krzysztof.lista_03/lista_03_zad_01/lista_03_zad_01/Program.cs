@@ -10,29 +10,28 @@ namespace lista_03_zad_01
         {
             Tworca Jahwe = new Tworca();
 
-            // krok 0
             Jahwe.CreateNew("Ania");
-            Jahwe.WypiszObserwatorow(0);
-
-            // krok 1
             Jahwe.CreateNew("Bartek");
-            Jahwe.WypiszObserwatorow(1);
-
-            // krok 2
             Jahwe.CreateNew("Celvin");
-            Jahwe.WypiszObserwatorow(2);
-
-            // krok 3
             Jahwe.CreateNew("Dawid");
-            Jahwe.WypiszObserwatorow(3);
-
-            // krok 4
             Jahwe.CreateNew("Emilia");
-            Jahwe.WypiszObserwatorow(4);
-
-            // krok 5
             Jahwe.CreateNew("Falafel");
-            Jahwe.WypiszObserwatorow(5);
+            Jahwe.CreateNew("Gienek");
+            Jahwe.CreateNew("Hubert");
+            Jahwe.CreateNew("Iwona");
+            Jahwe.CreateNew("Janusz");
+            Jahwe.CreateNew("Kukiz");
+            Jahwe.CreateNew("Lenin");
+            Jahwe.CreateNew("Łukasz");
+            Jahwe.CreateNew("Maciej");
+            Jahwe.CreateNew("Natalia");
+            Jahwe.CreateNew("Ola");
+            Jahwe.CreateNew("Paweł");
+            Jahwe.CreateNew("Reksio");
+            Jahwe.CreateNew("Sasin");
+            Jahwe.CreateNew("Tomasz");
+
+            Console.Read();
         }
     }
 
@@ -40,38 +39,27 @@ namespace lista_03_zad_01
     {
         List<Obserwator> Obserwatorzy = new List<Obserwator>();
         Obserwator ObserwatorzyTmp;
+        Random rnd = new Random();
+        int krok = 0;
+
+        public delegate void onNowySiasiad(Obserwator obserwator);
+        public onNowySiasiad nowySiasiad;
+
+        public delegate void onWypisz();
+        public onWypisz wypisz;
 
         public void CreateNew(string name = "NoName")
         {
-            ObserwatorzyTmp = new Obserwator(name);
-            Nowy(ObserwatorzyTmp);
+            Console.WriteLine($"--------------------krok {krok++}-------------------");
+            ObserwatorzyTmp = new Obserwator(name, Math.Round((double)rnd.Next() / Int32.MaxValue, 3), Math.Round((double)rnd.Next() / Int32.MaxValue, 3));
+            // ObserwatorzyTmp = new Obserwator(name); // mi i w tym i w tym wyżej przypadku x'sy i y'greki są różne
+            ObserwatorzyTmp.Subscribe(this);
+            for (int i = 0; i < Obserwatorzy.Count; i++)
+            {
+                if (nowySiasiad != null) nowySiasiad(Obserwatorzy[i]);
+            }
+            if (wypisz != null) wypisz();
             Obserwatorzy.Add(ObserwatorzyTmp);
-        }
-
-        void Nowy(Obserwator ObserwatorzyTmp)
-        {
-            Sasiedzi tmpSasiad;
-            for (int i = 0; i < Obserwatorzy.Count; i++)
-            {
-                //Obserwatorzy[i];
-                tmpSasiad = new Sasiedzi(Obserwatorzy[i].X, Obserwatorzy[i].Y, ObserwatorzyTmp.X, ObserwatorzyTmp.Y, ObserwatorzyTmp.Name);
-                Obserwatorzy[i].AddSasiad(tmpSasiad);
-            }
-        }
-
-        public void WypiszObserwatorow(string krok = "0")
-        {
-            Console.WriteLine($"--------------------krok {krok}-------------------");
-            for (int i = 0; i < Obserwatorzy.Count; i++)
-            {
-                Obserwatorzy[i].Wypisz();
-            }
-            Console.WriteLine();
-        }
-
-        public void WypiszObserwatorow(int krok = 0)
-        {
-            this.WypiszObserwatorow(krok.ToString());
         }
     }
 
@@ -80,7 +68,7 @@ namespace lista_03_zad_01
         double x, y;
         string name;
         Random rnd = new Random();
-        List<Sasiedzi> moiSasiedzi = new List<Sasiedzi>();
+        List<Sasiedzi> moiSasiedzi = new List<Sasiedzi>(); // normalnie bym usuwał wszystko poza pierwszymi dwoma dla oszczędności pamięci. Dla celów debugowania / sprawdzania przez pana, nie implementuje tego
 
         public Obserwator(string name)
         {
@@ -92,15 +80,30 @@ namespace lista_03_zad_01
             this.name = name;
         }
 
-        public void AddSasiad(Sasiedzi newSasiad)
+        public Obserwator(string name, double x, double y)
         {
+            this.x = x;
+            this.y = y;
+            this.name = name;
+        }
+
+        public void Subscribe(Tworca Jahwe)
+        {
+            Jahwe.nowySiasiad = AddSasiad;
+            Jahwe.wypisz = Wypisz;
+        }
+
+        public void AddSasiad(Obserwator obserwator)
+        {
+            Sasiedzi newSasiad = new Sasiedzi(this.X, this.Y, obserwator.X, obserwator.Y, obserwator.Name);
             moiSasiedzi.Add(newSasiad);
-            this.moiSasiedzi.Sort();
+            moiSasiedzi.Sort();
         }
 
         public void Wypisz()
         {
             Console.WriteLine($"Jestem {this.name} - Lista sąsiadów:");
+            //Console.WriteLine($"({this.X} , {this.Y}) Jestem {this.name} - Lista sąsiadów:");
             for (int i = 0; i < this.moiSasiedzi.Count; i++)
             {
                 Console.WriteLine(this.moiSasiedzi[i]);
@@ -149,7 +152,7 @@ namespace lista_03_zad_01
 
         public int CompareTo([AllowNull] Sasiedzi other)
         {
-            return this.odl > other.odl ? 1 : 0;
+            return this.odl > other.odl ? 1 : -1;
         }
 
         public override string ToString()
